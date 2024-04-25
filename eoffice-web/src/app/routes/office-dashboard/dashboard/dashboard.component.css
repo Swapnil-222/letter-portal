@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.heading {
+  background-color: rgb(6, 39, 0);
+}
+
+.matero-col .heading {
+  background-color: aquamarine;
+}

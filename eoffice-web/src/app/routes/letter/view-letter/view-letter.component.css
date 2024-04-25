@@ -1,0 +1,89 @@
+.d-flex {
+  padding-left: 20px;
+  background-color: rgb(237, 241, 248);
+  border-radius: 10px;
+}
+
+.row {
+  font-size: 20px;
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  min-width: 120px;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.example-button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.example-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.toolbar {
+  margin-left: 0;
+}
+
+.button {
+  padding-left: 22%;
+}
+
+mat-card-title {
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.panel1 {
+  margin-top: 20px;
+  margin-left: 0;
+  padding-left: 0;
+  background-color: rgb(242, 247, 253);
+}
+
+.panel2 {
+  margin-left: 0;
+  padding-left: 0;
+  background-color: rgb(248, 255, 226);
+}
+
+.panel3 {
+  margin-left: 0;
+  padding-left: 0;
+  background-color: rgb(253, 239, 239);
+}
+
+.remark {
+  margin-top: 56px;
+  background-color: rgb(219, 253, 213);
+}
+
+.mat-card:not([class*='mat-elevation-z']) {
+  box-shadow:
+    -1 2px 1px -1px rgba(0, 0, 0, 1),
+    0 1px 1px 0 rgba(0, 0, 0, 1),
+    0 1px 3px 0 rgba(0, 0, 0, 1);
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+  box-shadow: 2px 0 3px -2px rgb(0, 0, 0, .2), 1px 2px 3px 0 rgb(0, 0, 0, .14), 0 0 0 0 rgb(0, 0, 0, .12);
+}

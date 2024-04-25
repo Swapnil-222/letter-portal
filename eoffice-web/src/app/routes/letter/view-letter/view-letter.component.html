@@ -1,0 +1,430 @@
+<!-- New View -->
+<mat-card style="background-color: #bdbdbd0d">
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="70">
+    <div class="matero-row" fxLayout="row wrap">
+      <div class="matero-col" fxFlex="100" fxFlex.gt-sm="100">
+        <button mat-raised-button color="accent" (click)="previousState()">
+          {{ 'menu.back' | translate }}
+        </button>
+        &nbsp;
+        <mat-expansion-panel class="panel1" [expanded]="true">
+          <mat-expansion-panel-header>
+            {{ 'menu.letterdetails' | translate }}
+          </mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'menu.inwardNumber' | translate }}</h5></a
+                >
+              </mat-nav-list>
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'menu.letterstatus' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ details.inwardNumber }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ details.currentStatus }}
+                </a>
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.letterdate' | translate }}</h5></a
+                >
+              </mat-nav-list>
+
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.reciveddate' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ details.letterDate | date: 'mediumDate' }}
+                </a>
+                <a mat-list-item class="text-green-500">
+                  {{ details.letterReceivedDate | date: 'mediumDate' }}
+                </a>
+              </mat-nav-list>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.subject' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-9">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.subject }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list></mat-nav-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'menu.outwardNumber' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-8">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.outwardNumber }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list></mat-nav-list>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        &nbsp;
+      </div>
+    </div>
+    <!-- new sender -->
+    <div class="matero-row" fxLayout="row wrap">
+      <div class="matero-col" fxFlex="100" fxFlex.gt-sm="100">
+        <mat-expansion-panel class="panel2" [expanded]="true">
+          <mat-expansion-panel-header>{{
+            'menu.senderdetails' | translate
+          }}</mat-expansion-panel-header>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.sendername' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-9">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.senderName }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list></mat-nav-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.senderaddress' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-9">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.senderAddress }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list></mat-nav-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.outward' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-9">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.senderOutward }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list></mat-nav-list>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.type' | translate }}</h5></a
+                >
+              </mat-nav-list>
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.contactno' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ details.letterType }}
+                </a>
+                <a mat-list-item class="text-green-500">
+                  {{ details.contactNumber }}
+                </a>
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.label.taluka' | translate }}</h5></a
+                >
+              </mat-nav-list>
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.email' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ details.taluka }}
+                </a>
+              </mat-nav-list>
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ details.senderEmail }}
+                </a>
+              </mat-nav-list>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        &nbsp;
+      </div>
+    </div>
+    <!-- hearing -->
+    <div class="matero-row" fxLayout="row wrap" *authorityHide="'HEARING_MENU'">
+      <div
+        class="matero-col"
+        fxFlex="100"
+        fxFlex.gt-sm="100"
+        *ngIf="hearingDetails.time == null && hearingDetails.time == null"
+      >
+        <mat-card class="panel3">
+          <mat-card-subtitle>
+            <strong class="strong-text-title" style="padding-left: 20px">{{
+              'menu.hearingdetails' | translate
+            }}</strong>
+          </mat-card-subtitle>
+          <mat-divider></mat-divider>
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.accuserName' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ hearingList[0]?.accuserName }}
+                </a>
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.respondentName' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item class="text-green-500">
+                  {{ hearingList[0]?.respondentName }}
+                </a>
+              </mat-nav-list>
+            </div>
+          </div>
+          <div class="row" *ngFor="let hearing of hearingList" (sortChange)="changeSort($event)">
+            <div class="col-sm-3">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.date' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-3">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ getPreviousDate(hearing?.date) | date: 'mediumDate' }}
+                </a>
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-2">
+              <mat-nav-list class="m-x--10 m-b--10 m-t-10">
+                <a mat-list-item
+                  ><h5>{{ 'dak.title.comment' | translate }}</h5></a
+                >
+              </mat-nav-list>
+            </div>
+            <div class="col-sm-4">
+              <mat-nav-list>
+                <a mat-list-item class="text-green-500">
+                  {{ hearing?.comment }}
+                </a>
+              </mat-nav-list>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+        </mat-card>
+        <div
+          class="matero-row"
+          fxLayout="row wrap"
+          style="padding-left: 310px"
+          *authorityHide="'DAK_MY_ASSIGNMENTS'"
+        >
+          <div class="matero-row" fxLayout="row wrap">
+            <div *ngIf="details.currentStatus == 'ASSIGNED'">
+              <button
+                mat-raised-button
+                class="bg-orange-500 text-white m-t-8"
+                *authorityHide="'HEARING_MENU'"
+                (click)="addAwait()"
+              >
+                {{ 'menu.await' | translate }}
+              </button>
+              &nbsp;
+            </div>
+
+            <div *ngIf="details.currentStatus == 'ASSIGNED' && details.letterType != 'SELF'">
+              <button
+                mat-raised-button
+                class="bg-teal-500 text-white m-t-8"
+                *authorityHide="'HEARING_MENU'"
+                (click)="openTransfer()"
+              >
+                {{ 'menu.transfer' | translate }}
+              </button>
+              &nbsp;
+            </div>
+
+            <div
+              *ngIf="
+                details.currentStatus == 'ASSIGNED' ||
+                hearingDetails.date != null ||
+                details.currentStatus == 'AWAITED'
+              "
+            >
+              <button
+                mat-raised-button
+                class="bg-cyan-500 text-white m-t-8"
+                *authorityHide="'HEARING_MENU'"
+                (click)="addHearing()"
+              >
+                {{ 'menu.hearing' | translate }}
+              </button>
+              &nbsp;
+            </div>
+            <div *ngIf="details.currentStatus == 'HEARING'">
+              <button
+                [disabled]="isDisabled"
+                mat-raised-button
+                class="bg-cyan-500 text-white m-t-8"
+                *authorityHide="'HEARING_MENU'"
+                (click)="addNextHearing()"
+              >
+                {{ 'menu.nextHearing' | translate }}
+              </button>
+              &nbsp;
+            </div>
+            <div *ngIf="details.currentStatus == 'HEARING'">
+              <button
+                [disabled]="isDisabled"
+                mat-raised-button
+                class="bg-cyan-500 text-white m-t-8"
+                (click)="hearingComplited()"
+              >
+                {{ 'menu.hearingCompleted' | translate }}
+              </button>
+              &nbsp;
+            </div>
+            <div
+              *ngIf="
+                details.currentStatus == 'ASSIGNED' ||
+                details.currentStatus == 'AWAITED' ||
+                details.currentStatus == 'AWAITED_FOR_ORDER'
+              "
+            >
+              <button
+                mat-raised-button
+                class="bg-purple-500 text-white m-t-8"
+                *authorityHide="'HEARING_MENU'"
+                (click)="addCleared()"
+              >
+                {{ 'menu.clear' | translate }}
+              </button>
+              &nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="30">
+    <mat-card class="remark">
+      <mat-card-subtitle>
+        <strong class="strong-text-title">{{ 'menu.letterremark' | translate }}</strong>
+      </mat-card-subtitle>
+      <mat-divider></mat-divider>
+      <br />
+      <mat-card style="background-color: #15d73924" *ngIf="this.hearingList[0]?.comment != null">
+        <mat-card-content
+          ><h4>{{ hearingList[0]?.comment }}</h4></mat-card-content
+        >
+        <mat-card-content class="text-green-500">{{
+          hearingList[0]?.lastModified | date: 'mediumDate'
+        }}</mat-card-content>
+      </mat-card>
+      <mat-card style="background-color: #15d73924" *ngIf="this.details.awaitReason != null">
+        <mat-card-content
+          ><h4>{{ details.awaitReason }}</h4></mat-card-content
+        >
+        <mat-card-content class="text-green-500"></mat-card-content>
+      </mat-card>
+      <mat-card
+        style="background-color: #15d73924"
+        *ngIf="this.currentHearingDetail?.description != null"
+      >
+        <mat-card-content
+          ><h4>{{ currentHearingDetail?.description }}</h4></mat-card-content
+        >
+        <mat-card-content class="text-green-500">{{
+          currentHearingDetail?.createdOn | date: 'mediumDate'
+        }}</mat-card-content>
+      </mat-card>
+    </mat-card>
+  </div>
+</mat-card>

@@ -1,0 +1,211 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "route": "home/dashboard",
+      "name": "dashboard",
+      "type": "link",
+      "icon": "bar_chart",
+      "permissions": {
+        "only": ["DASHBOARD_MENU"]
+      }
+    },
+    {
+      "id": 2,
+      "route": "home/admin/user/",
+      "name": "users",
+      "type": "link",
+      "icon": "supervisor_account",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["USER_EDIT"]
+      }
+    },
+
+    {
+      "id": 3,
+      "route": "home/admin/organization/",
+      "name": "organizations",
+      "type": "link",
+      "icon": "account_balance",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["ORGANIZATION_EDIT"]
+      }
+    },
+
+    {
+      "id": 4,
+      "route": "home/admin/parameter/",
+      "name": "parameter",
+      "type": "link",
+      "icon": "add_circle",
+      "permissions": {
+        "only": ["USER_EDIT","USER_LIST"]
+      }
+    },
+
+    {
+      "id": 5,
+      "route": "home/letter/new-letters-clerk",
+      "name": "new-letters-clerk",
+      "type": "link",
+      "icon": "email",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["DAK_INWARD_MENU"]
+      }
+    },
+    {
+      "id": 6,
+      "route": "home/letter/assigned",
+      "name": "assigned",
+      "type": "link",
+      "icon": "email",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["DAK_INWARD_MENU"]
+      }
+    },
+    {
+      "id": 7,
+      "route": "home/letter/my-assignment",
+      "name": "my-assignment",
+      "type": "link",
+      "icon": "email",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["DAK_MY_ASSIGNMENTS"]
+      }
+    },
+    {
+      "id": 8,
+      "route": "home/letter/letter-list",
+      "name": "letter-list",
+      "type": "link",
+      "icon": "email",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["DAK_INWARD_VIEW_ONLY"]
+      }
+    },
+
+    {
+      "id": 9,
+      "route": "home/letter/hearings",
+      "name": "hearings",
+      "type": "link",
+      "icon": "assignment",
+      "authority": ["ROLE_EMP"],
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["HEARING_MENU"]
+      }
+    },
+    {
+      "id": 10,
+      "route": "home/letter/cleared",
+      "name": "cleared",
+      "type": "link",
+      "icon": "clear_all",
+      "authority": ["ROLE_EMP"],
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["DAK_CLEARED_MENU"]
+      }
+    },
+    {
+      "id": 11,
+      "route": "home/letter/new-letters-marker",
+      "name": "new-letters-marker",
+      "type": "link",
+      "icon": "bar_chart",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["INWARDS_MARKER_MENU"]
+      }
+    },
+    {
+      "id": 12,
+      "route": "home/report/inward-register",
+      "name": "inwardregister",
+      "type": "link",
+      "icon": "library_books",
+      "permissions": {
+        "only": ["INWARD_REGISTER_MENU"]
+      }
+    },
+    {
+      "id": 13,
+      "route": "home/report/goshwara",
+      "name": "goshwara",
+      "type": "link",
+      "icon": "report",
+      "permissions": {
+        "only": ["GOSHWARA_MENU"]
+      }
+    },
+    {
+      "id": 14,
+      "route": "home/report/nondwahi",
+      "name": "nondwahi",
+      "type": "link",
+      "icon": "library_books",
+      "permissions": {
+        "only": ["NONDWAHI_MENU"]
+      }
+    },
+
+    {
+      "id": 15,
+      "route": "home/letter/dispatched",
+      "name": "dispatched",
+      "type": "link",
+      "icon": "email",
+      "badge": {
+        "color": "red-500",
+        "value": "0"
+      },
+      "permissions": {
+        "only": ["ASSIGN_DAK_MENU"]
+      }
+    },
+    {
+      "id": 16,
+      "route": "home/report/handed-over",
+      "name": "handed-over",
+      "type": "link",
+      "icon": "report",
+      "permissions": {
+        "only": ["HANDEDOVER_MENU"]
+      }
+    }
+  ]
+}

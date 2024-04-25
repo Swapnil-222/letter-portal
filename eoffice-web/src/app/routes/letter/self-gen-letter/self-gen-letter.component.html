@@ -1,0 +1,60 @@
+<form name="userForm" role="form" novalidate #userForm="ngForm" class="form-field-full">
+  <mat-card-title>{{ 'menu.selfletter' | translate }}</mat-card-title>
+  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+    <div fxFlex="100" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'menu.letterDate' | translate }}</mat-label>
+        <input
+          matInput
+          name="letterDate"
+          [matDatepicker]="datePicker"
+          [(ngModel)]="details.letterDate"
+          #dateModel="ngModel"
+          [max]="today"
+          required
+          aria-label="Letter Date"
+          [readonly]="true"
+        />
+        <mat-datepicker-toggle matSuffix [for]="datePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #datePicker openOnFocus="true"></mat-datepicker>
+        <mat-error *ngIf="userForm.controls.letterDate?.errors?.required">
+          {{ 'validations.required' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'menu.subject' | translate }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ 'menu.subject' | translate }}"
+          [(ngModel)]="details.subject"
+          name="subject"
+          pattern=""
+          required
+          minlength="1"
+        />
+        <mat-error *ngIf="userForm.controls.subject?.errors?.required">
+          {{ 'validations.required' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      color="primary"
+      class="m-t-6"
+      (click)="saveSGL(); clicked = true;"
+      [disabled]="clicked ||userForm.invalid"
+      cdkFocusInitial
+    >
+      {{ 'menu.save' | translate }}
+    </button>
+    <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+      {{ 'menu.cancel' | translate }}
+    </button>
+  </div>
+</form>

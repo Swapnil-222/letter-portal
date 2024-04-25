@@ -1,0 +1,30 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "firstname": "akash",
+      "lastname": "karale",
+      "mobile": 9876543210,
+      "email": "akash@gmail.com",
+      "address": "pune",
+      "designation": "2",
+      "gender": "male",
+      "role": "2",
+      "section": "1",
+      "username": "NCNagare",
+      "password": "9876543210",
+      "confirmpassword": "9876543210",
+      "lastModified": "2022-04-25T14:39:19.361Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

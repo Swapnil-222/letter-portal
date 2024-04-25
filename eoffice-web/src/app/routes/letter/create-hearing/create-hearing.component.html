@@ -1,0 +1,104 @@
+<form name="userForm" role="form" novalidate #userForm="ngForm" class="form-field-full">
+  <h4>{{ 'menu.nexthearing' | translate }}: {{ hearingData?.inwardNo }}</h4>
+  <mat-divider></mat-divider>
+  &nbsp;&nbsp;
+  <div>
+    <div class="row">
+      <div class="col-sm-5">
+        <mat-nav-list>{{'menu.previousdate' | translate}} </mat-nav-list>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-nav-list class="text-green-500">
+          {{ getPreviousDate(currentHearingDetail?.date) | date: 'mediumDate' }}&nbsp;&nbsp; {{ currentHearingDetail?.time }}
+        </mat-nav-list>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <mat-nav-list> {{'menu.accuser' | translate}} </mat-nav-list>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-nav-list class="text-green-500">
+          {{ currentHearingDetail?.accuserName }}
+        </mat-nav-list>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <mat-nav-list> {{'menu.respodant' | translate}}</mat-nav-list>
+      </div>
+
+      <div class="col-sm-4">
+        <mat-nav-list class="text-green-500">
+          {{ currentHearingDetail?.respondentName }}
+        </mat-nav-list>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+    <div fxFlex="45" fxFlex.lt-md="100" class="date">
+      <mat-label>{{ 'menu.hearingDate' | translate }}</mat-label>
+      <mat-form-field>
+        <input
+          matInput
+          name="letterDate"
+          [matDatepicker]="datePicker"
+          [(ngModel)]="hearingDetails.date"
+          #dateModel="ngModel"
+          required
+          [min]="today"
+          aria-label="Letter Date"
+          [readonly]="true"
+        />
+        <mat-datepicker-toggle matSuffix [for]="datePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #datePicker openOnFocus="true"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div fxFlex="45" fxFlex.lt-md="100">
+      <mat-label>{{ 'menu.Time' | translate }}</mat-label>
+      <mat-form-field class="example-full-width">
+        <input
+          mat-timepicker
+          name="time"
+          [(ngModel)]="hearingDetails.time"
+          matInput
+          type="time"
+          placeholder=""
+
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <div style="margin: 0px -8px -8px 8px">
+    <mat-label>{{ 'dak.title.comment' | translate }}</mat-label>
+    <mat-form-field>
+      <textarea matInput name="comment" [(ngModel)]="hearingDetails.comment"></textarea>
+      <mat-icon matSuffix></mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      color="primary"
+      class="m-t-6"
+      [disabled]="clicked || userForm.invalid"
+      (click)="save(); clicked = true"
+    >
+    {{'menu.save' | translate}}
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      class="m-l-8"
+      [routerLink]="['/home/letter/hearings']"
+      mat-dialog-close
+    >
+      {{ 'menu.cancel' | translate }}
+    </button>
+  </div>
+</form>

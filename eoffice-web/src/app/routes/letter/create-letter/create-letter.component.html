@@ -1,0 +1,213 @@
+<form name="userForm" role="form" novalidate #userForm="ngForm" class="form-field-full">
+  <mat-card>
+    <mat-card-title> {{ 'dak.title.letterdetails' | translate }}</mat-card-title>
+    <div fxLayout="row wrap" fxLayoutGap="8px grid">
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.letterdate' | translate }}</mat-label>
+          <input
+            matInput
+            name="letterDate"
+            [matDatepicker]="datePicker"
+            [(ngModel)]="details.letterDate"
+            #dateModel="ngModel"
+            required
+            [max]="today"
+            aria-label="Letter Date"
+            [readonly]="true"
+          />
+          <mat-datepicker-toggle matSuffix [for]="datePicker" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datePicker openOnFocus="true"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.reciveddate' | translate }}</mat-label>
+          <input
+            matInput
+            name="letterReceivedDate"
+            [matDatepicker]="datePicker1"
+            [(ngModel)]="details.letterReceivedDate"
+            #dateModel="ngModel"
+            required
+            [max]="today"
+            aria-label="Recieved Date"
+            [readonly]="true"
+          />
+          <mat-datepicker-toggle matSuffix [for]="datePicker1" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datePicker1 openOnFocus="true"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.subject' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="Subject"
+            [(ngModel)]="details.subject"
+            name="subject"
+            pattern=""
+            minlength="1"
+            required
+          />
+          <mat-error *ngIf="userForm.controls.subject?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>{{ 'dak.title.senderdetails' | translate }}</mat-card-title>
+    <div fxLayout="row wrap" fxLayoutGap="8px grid">
+      <div fxFlex="100" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.sendername' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="senderName"
+            [(ngModel)]="details.senderName"
+            name="senderName"
+            pattern=""
+            minlength="1"
+            maxlength="50"
+          />
+          <mat-error *ngIf="userForm.controls.senderName?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.contactno' | translate }}</mat-label>
+          <input
+            matInput
+            type="tel"
+            placeholder="contactNumber"
+            [(ngModel)]="details.contactNumber"
+            name="contactNumber"
+            pattern=""
+            minlength="10"
+            maxlength="10"
+          />
+          <mat-error *ngIf="userForm.controls.contactNumber?.errors?.['minlength']">
+            {{ 'validations.minlength' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-sm="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.label.taluka' | translate }}</mat-label>
+          <mat-select name="taluka" [(ngModel)]="details.taluka">
+            <mat-option value="" disabled selected>{{ 'dak.label.taluka' | translate }}</mat-option>
+            <mat-option value="Indapur,Pune">{{ 'dak.label.indapur' | translate }}</mat-option>
+            <mat-option value="Baramati,Pune">{{ 'dak.label.baramati' | translate }}</mat-option>
+            <mat-option value="Daund,Pune">{{ 'dak.label.daund' | translate }}</mat-option>
+            <mat-option value="Bhor,Pune">{{ 'dak.label.bhor' | translate }}</mat-option>
+            <mat-option value="Haveli,Pune">{{ 'dak.label.haveli' | translate }}</mat-option>
+            <mat-option value="Shirur,Pune">{{ 'dak.label.shirur' | translate }}</mat-option>
+            <mat-option value="Maval,Pune">{{ 'dak.label.maval' | translate }}</mat-option>
+            <mat-option value="Purandar,Pune">{{ 'dak.label.purandar' | translate }}</mat-option>
+            <mat-option value="Khed,Pune">{{ 'dak.label.khed' | translate }}</mat-option>
+            <mat-option value="junner,Pune">{{ 'dak.label.junner' | translate }}</mat-option>
+            <mat-option value="Mulashi,Pune">{{ 'dak.label.mulshi' | translate }}</mat-option>
+            <mat-option value="Velha,Pune">{{ 'dak.label.velha' | translate }}</mat-option>
+            <mat-option value="Ambegaon,Pune">{{ 'dak.label.ambegaon' | translate }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userForm.controls.taluka?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.senderaddress' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="Sender Address"
+            [(ngModel)]="details.senderAddress"
+            name="senderAddress"
+            pattern=""
+            minlength="1"
+            maxlength="50"
+          />
+          <mat-error *ngIf="userForm.controls.senderAddress?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.email' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            type="email"
+            [(ngModel)]="details.senderEmail"
+            name="senderEmail"
+            pattern="(?![_.-])((?![_.-][_.-])[a-z\d_.-]){0,63}[a-z\d]@(?!-)((?!--)[a-z\d-]){0,63}[a-z\d]\.(((?!-)((?!--)[a-z\d-]){0,63}[a-z\d]\.)|)(([a-z]{2,14}\.)|)[a-z]{2,14}"
+            minlength="1"
+            maxlength="50"
+          />
+          <mat-error *ngIf="userForm.controls.senderEmail?.errors?.['pattern']">
+            {{ 'validations.invalid_email' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.outward' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="Outward"
+            [(ngModel)]="details.senderOutward"
+            name="senderOutward"
+            pattern=""
+            minlength="1"
+            maxlength="50"
+          />
+          <mat-error *ngIf="userForm.controls.senderOutward?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-sm="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.type' | translate }}</mat-label>
+          <mat-select name="letterType" [(ngModel)]="details.letterType">
+            <mat-option>-- None --</mat-option>
+            <mat-option value="INWARD">INWARD</mat-option>
+            <mat-option value="OUTWARD">OUTWARD</mat-option>
+            <mat-option value="SELF" *ngIf="this.loginUser.roles![0] != 'ROLE_CLERK'"
+              >SELF</mat-option
+            >
+            <mat-option value="OTHER">OTHER</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userForm.controls.letterType?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button
+        mat-raised-button
+        color="primary"
+        class="m-t-6"
+        [disabled]="clicked || userForm.invalid"
+        (click)="save(); clicked = true;"
+      >
+        {{ 'menu.save' | translate }}
+      </button>
+      <button mat-raised-button color="warn" class="m-l-8" (click)="cancel()">
+        {{ 'menu.cancel' | translate }}
+      </button>
+    </div>
+  </mat-card>
+</form>

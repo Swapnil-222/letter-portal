@@ -1,0 +1,119 @@
+<mat-card>
+  <div fxLayout="row wrap" class="matero-row">
+    <div fxFlex="20" class="matero-col">
+      <mat-form-field class="m-r-8" appearance="outline" style=" font-size: 12px">
+        <mat-label>{{ 'menu.daterange' | translate }}</mat-label>
+        <mat-date-range-input [rangePicker]="datePicker1" [max]="today" [formGroup]="range">
+          <input
+            name="letterGreaterDate"
+            formControlName="letterGreaterDate"
+            [(ngModel)]="range.letterGreaterDate"
+            matStartDate
+            placeholder="{{ 'menu.startdate' | translate }}"
+          />
+          <input
+            name="letterlesserDate"
+            formControlName="letterlesserDate"
+            matEndDate
+            [(ngModel)]="range.letterlesserDate"
+            placeholder="{{ 'menu.enddate' | translate }}"
+          />
+        </mat-date-range-input>
+        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+        <mat-datepicker-toggle matSuffix [for]="datePicker1"></mat-datepicker-toggle>
+        <mat-date-range-picker #datePicker1></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="matero-col" style="margin-top: 4px; flex: auto;margin-left: 27px;margin-right: -3px;">
+      <button mat-raised-button color="primary" (click)="onSearch(false)">
+        {{ 'menu.searchbtn' | translate }}
+      </button>
+      &nbsp;
+      <button mat-raised-button class="bg-red-500 text-white" (click)="onSearch(true)">
+        {{ 'menu.resetbtn' | translate }}
+      </button>
+
+      <div fxLayout="row wrap" class="downloadButton">
+        <button mat-raised-button color="primary" (click)="downloadReport()" class="m-t-6">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+
+        <button mat-raised-button color="primary" (click)="downloadReport(true)" class="m-l-8">
+          <mat-icon>print</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h2 style="color: #047886">{{ user.organization?.organizationName }}</h2>
+  <h3>{{ 'headerr.subtitleinward' | translate }}</h3>
+  <h4>{{ 'menu.employeename' | translate }} : {{ user.firstName }} {{ user.lastName }}</h4>
+
+<!-- </ng-template> -->
+
+<table mat-table [dataSource]="dataSource" class="">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Header row first group -->
+  <ng-container matColumnDef="header-row-first-group">
+    <th mat-header-cell *matHeaderCellDef colspan="2">{{ 'menu.incomeregister' | translate }}</th>
+  </ng-container>
+
+  <!-- Header row second group -->
+  <ng-container matColumnDef="header-row-second-group">
+    <th mat-header-cell *matHeaderCellDef colspan="0">
+     <div *ngIf="range.letterGreaterDate != null">
+      {{ 'menu.dateTo' | translate }} : {{range.letterGreaterDate |  date:'dd/MM/yyyy'}} {{'menu.to' | translate}} {{range.letterlesserDate |  date:'dd/MM/yyyy'}}
+     </div>
+    </th>
+  </ng-container>
+
+  <!-- Second row -->
+
+  <ng-container matColumnDef="header-second-row-first-group" class="header_1" style="width: 25px">
+    <th mat-header-cell *matHeaderCellDef width="32%">
+      {{ 'menu.incomeInRegister' | translate }}
+    </th>
+  </ng-container>
+
+  <ng-container matColumnDef="header-second-row-second-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef width="17%">{{ 'menu.inwardReference' | translate }}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-third-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef></th>
+  </ng-container>
+  <!-- End second row -->
+  <tr mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group']"></tr>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="[
+      'header-second-row-first-group',
+      'header-second-row-second-group',
+      'header-second-row-third-group'
+    ]"
+  ></tr>
+</table>
+<mtx-grid
+  [data]="list"
+  [columns]="columns"
+  [pageOnFront]="false"
+  [toolbarTitle]="''"
+  [toolbarTemplate]="toolbarTpl"
+  [pageIndex]="pageContext.page"
+  [rowStriped]="rowStriped"
+  (sortChange)="changeSort($event)"
+  [pageSize]="pageContext.itemsPerPage"
+  [length]="pageContext.totalItems"
+  [pageSizeOptions]="[5, 10, 20, 50]"
+  [sortOnFront]="false"
+  [cellTemplate]=""
+  (page)="onPageChange($event)"
+>
+</mtx-grid>
+<ng-template #expansionTpl let-row> </ng-template>
+<ng-template #toolbarTpl></ng-template>
+</mat-card>

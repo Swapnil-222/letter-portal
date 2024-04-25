@@ -1,0 +1,354 @@
+
+  <mat-card>
+    <div>
+      <div fxLayout="row wrap" class="downloadButton" style=" justify-content: flex-end;" >
+        <button  mat-raised-button color="primary" (click)="downloadReport()" class="m-t-6">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        &nbsp;
+        <button mat-raised-button color="primary" (click)="downloadReport(true)" class="m-l-8">
+          <mat-icon>print</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card>
+  <!-- <h2 style="color:#047886;">District Deputy Registrar Co-operative Society Pune, Rural</h2> -->
+  <h2 style="color:#860417;">{{user.organization?.organizationName}}</h2>
+  <h3>{{"ghoshwara.ghoshwara" | translate}}</h3>
+  <h4>{{"ghoshwara.date"| translate}} : {{startdateofweek|date:'dd/MM/yyyy'}} {{'menu.to' | translate}} {{enddateofweek|date:'dd/MM/yyyy'}}</h4>
+  <h4>{{"menu.employeename" | translate}} : {{user.firstName}} {{user.lastName}}</h4>
+
+<table mat-table [dataSource]="dataSource" class="">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+<div class="goshwara">
+
+  <ng-container matColumnDef="header-row-first-group">
+    <th mat-header-cell *matHeaderCellDef colspan="1"></th>
+  </ng-container>
+  <!-- Header row first group -->
+  <ng-container matColumnDef="header-row-second-group">
+    <th mat-header-cell *matHeaderCellDef colspan="2" style="color: black;"><b>{{"ghoshwara.initialpendings" | translate}}</b></th>
+  </ng-container>
+
+  <!-- Header row second group -->
+  <ng-container matColumnDef="header-row-third-group">
+    <th mat-header-cell *matHeaderCellDef colspan="5"></th>
+  </ng-container>
+  <ng-container matColumnDef="header-row-fourth-group">
+    <th mat-header-cell *matHeaderCellDef colspan="9"  style="color: black;"><b>{{"ghoshwara.classificationofbalance" | translate}}</b></th>
+  </ng-container>
+</div>
+
+  <!-- Second row -->
+
+  <ng-container matColumnDef="header-second-row-1-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.registertype" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-2-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.weeklypendings" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-3-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.dailypendings" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-4-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.currentweekinwards" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-5-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef width="5%"  style="color: black;"><b>{{"ghoshwara.total" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-6-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.selfgeneratd" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-7-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.currentweekcleared" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-8-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.weeklypendings" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-9-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.1stweek" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-10-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.2stweek" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-11-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.3stweek" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-12-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.1stmonth" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-13-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.2stmonth" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-14-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.3stmonth" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-15-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.within6months" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-16-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.above6months" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-second-row-17-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.above1year" | translate}}</b></th>
+  </ng-container>
+  <!-- End second row -->
+  <!-- Third row start-->
+  <ng-container matColumnDef="header-third-row-1-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.workdescription" | translate}}</b></th>
+  </ng-container>
+
+  <!-- Data Starts -->
+  <ng-container matColumnDef="header-third-row-2-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.initialPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-3-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.dailyPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-4-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef width="5%">{{list[0]?.currentWeekInwards}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-5-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.total}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-6-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.selfGenerated}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-7-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.currentWeekCleared}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-8-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.currentWeekPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-9-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.firstWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-10-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.secondWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-11-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.thirdWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-12-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.firstMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-13-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.secondMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-14-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.thirdMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-15-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.withinSixMonths}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-16-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.aboveSixMonths}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-third-row-17-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[0]?.aboveOneYear}}</th>
+  </ng-container>
+  <!-- third row end -->
+  <!-- Fourth row start -->
+
+  <ng-container matColumnDef="header-fourth-row-3-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.awaitedregister" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-4-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.initialPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-5-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.dailyPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-6-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef width="5%">{{list[1]?.currentWeekInwards}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-7-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.total}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-8-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.selfGenerated}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-9-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.currentWeekCleared}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-10-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.currentWeekPendings}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-11-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.firstWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-12-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.secondWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-13-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.thirdWeek}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-14-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.firstMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-15-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.secondMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-16-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.thirdMonth}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-17-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.withinSixMonths}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-18-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.aboveSixMonths}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fourth-row-19-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{list[1]?.aboveOneYear}}</th>
+  </ng-container>
+  <!--  Fourth row end-->
+  <!-- Fifth Row -->
+
+  <ng-container matColumnDef="header-fifth-row-3-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef  style="color: black;"><b>{{"ghoshwara.total" | translate}}</b></th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-4-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{ getAddition(list[0]?.initialPendings, list[1]?.initialPendings) }}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-5-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.dailyPendings, list[1]?.dailyPendings)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-6-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef width="5%">{{getAddition(list[0]?.currentWeekInwards, list[1]?.currentWeekInwards)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-7-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.total, list[1]?.total)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-8-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.selfGenerated, list[1]?.selfGenerated)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-9-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.currentWeekCleared, list[1]?.currentWeekCleared)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-10-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.currentWeekPendings, list[1]?.currentWeekPendings)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-11-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.firstWeek, list[1]?.firstWeek)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-12-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.secondWeek, list[1]?.secondWeek)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-13-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.thirdWeek, list[1]?.thirdWeek)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-14-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.firstMonth, list[1]?.firstMonth)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-15-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.secondMonth, list[1]?.secondMonth)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-16-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.thirdMonth, list[1]?.thirdMonth)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-17-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.withinSixMonths, list[1]?.withinSixMonths)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-18-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.aboveSixMonths, list[1]?.aboveSixMonths)}}</th>
+  </ng-container>
+  <ng-container matColumnDef="header-fifth-row-19-group" class="header_2">
+    <th mat-header-cell *matHeaderCellDef>{{getAddition(list[0]?.aboveOneYear, list[1]?.aboveOneYear)}}</th>
+  </ng-container>
+  <!-- fifth row end -->
+  <tr class="goshwara" mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group','header-row-third-group','header-row-fourth-group']"></tr>
+  <tr
+    mat-header-row class="goshwara"
+    *matHeaderRowDef="[
+      'header-second-row-1-group',
+      'header-second-row-2-group',
+      'header-second-row-3-group',
+      'header-second-row-4-group',
+      'header-second-row-5-group',
+      'header-second-row-6-group',
+      'header-second-row-7-group',
+      'header-second-row-8-group',
+      'header-second-row-9-group',
+      'header-second-row-10-group',
+      'header-second-row-11-group',
+      'header-second-row-12-group',
+      'header-second-row-13-group',
+      'header-second-row-14-group',
+      'header-second-row-15-group',
+      'header-second-row-16-group',
+      'header-second-row-17-group',
+    ]"
+  ></tr>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="[
+      'header-third-row-1-group',
+      'header-third-row-2-group',
+      'header-third-row-3-group',
+      'header-third-row-4-group',
+      'header-third-row-5-group',
+      'header-third-row-6-group',
+      'header-third-row-7-group',
+      'header-third-row-8-group',
+      'header-third-row-9-group',
+      'header-third-row-10-group',
+      'header-third-row-11-group',
+      'header-third-row-12-group',
+      'header-third-row-13-group',
+      'header-third-row-14-group',
+      'header-third-row-15-group',
+      'header-third-row-16-group',
+      'header-third-row-17-group',
+
+    ]"
+  ></tr>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="[
+
+      'header-fourth-row-3-group',
+      'header-fourth-row-4-group',
+      'header-fourth-row-5-group',
+      'header-fourth-row-6-group',
+      'header-fourth-row-7-group',
+      'header-fourth-row-8-group',
+      'header-fourth-row-9-group',
+      'header-fourth-row-10-group',
+      'header-fourth-row-11-group',
+      'header-fourth-row-12-group',
+      'header-fourth-row-13-group',
+      'header-fourth-row-14-group',
+      'header-fourth-row-15-group',
+      'header-fourth-row-16-group',
+      'header-fourth-row-17-group',
+      'header-fourth-row-18-group',
+      'header-fourth-row-19-group'
+    ]"
+  ></tr>
+  <tr
+    mat-header-row
+    *matHeaderRowDef="[
+      'header-fifth-row-3-group',
+      'header-fifth-row-4-group',
+      'header-fifth-row-5-group',
+      'header-fifth-row-6-group',
+      'header-fifth-row-7-group',
+      'header-fifth-row-8-group',
+      'header-fifth-row-9-group',
+      'header-fifth-row-10-group',
+      'header-fifth-row-11-group',
+      'header-fifth-row-12-group',
+      'header-fifth-row-13-group',
+      'header-fifth-row-14-group',
+      'header-fifth-row-15-group',
+      'header-fifth-row-16-group',
+      'header-fifth-row-17-group',
+      'header-fifth-row-18-group',
+      'header-fifth-row-19-group',
+
+    ]"
+  ></tr>
+</table>
+</mat-card>

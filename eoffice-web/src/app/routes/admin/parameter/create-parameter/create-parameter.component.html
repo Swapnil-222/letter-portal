@@ -1,0 +1,63 @@
+<mat-card-title>{{ 'menu.parameter' | translate }}</mat-card-title
+><br /><br />
+<form name="parameterForm" role="form" novalidate #parameterForm="ngForm" class="form-field-full">
+  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'menu.parameter' | translate }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ 'menu.parameter' | translate }}"
+          name="parameterName"
+          pattern="^[a-zA-Z\s]{2,50}$"
+          minlength="1"
+          maxlength="150"
+          [(ngModel)]="parameterDetails.parameterName"
+          required
+        />
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.type' | translate }}</mat-label>
+        <mat-select name="type" [(ngModel)]="parameterDetails.type" required>
+          <mat-option>{{ 'dak.label.typechoose' | translate }}</mat-option>
+          <mat-option value="Section">Section</mat-option>
+          <mat-option value="Sender">Sender</mat-option>
+          <mat-option value="Designation">Designation</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>Parameter Value</mat-label>
+        <input
+          matInput
+          placeholder="Sender"
+          name="parameterValue"
+          pattern="^[a-zA-Z\s]{2,50}$"
+          minlength="1"
+          maxlength="150"
+          [(ngModel)]="parameterDetails.parameterValue"
+          required
+        />
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      [disabled]="parameterForm.invalid"
+      color="primary"
+      class="m-t-6"
+      (click)="onSave()"
+    >
+      {{ (parameterDetails.id != null ? 'menu.update' : 'menu.save') | translate }}
+    </button>
+    <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+      {{ 'menu.cancel' | translate }}
+    </button>
+  </div>
+</form>

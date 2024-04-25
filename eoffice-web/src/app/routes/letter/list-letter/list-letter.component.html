@@ -1,0 +1,157 @@
+<mat-card>
+  <div fxLayout="row wrap" class="matero-row">
+    <div
+      fxFlex="20"
+      class="matero-col"
+      *ngIf="this.currentNav[0].path == 'my-assignment' || this.currentNav[0].path == 'letter-list'"
+    >
+      <mat-form-field class="m-r-8"  appearance="outline" style=" font-size: 12px">
+        <mat-label>{{ 'menu.status' | translate }}</mat-label>
+        <mat-select name="letterType" [(ngModel)]="search['currentStatus.equals']">
+          <mat-option>{{ 'menu.status' | translate }}</mat-option>
+          <mat-option value="ASSIGNED">ASSIGNED</mat-option>
+          <mat-option value="HEARING">HEARING</mat-option>
+          <mat-option value="AWAITED">AWAITED</mat-option>
+          <mat-option value="AWAITED_FOR_ORDER">AWAITED_FOR_ORDER</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div
+      fxFlex="20"
+      class="matero-col"
+      *ngIf="
+        (this.currentNav[0].path == 'hearings' && this.user?.roles![0] != 'ROLE_EMP') ||
+        this.currentNav[0].path == 'letter-list' ||
+        this.currentNav[0].path == 'letter-list' ||
+         this.currentNav[0].path == 'dispatched'
+      "
+    >
+      <mat-form-field class="m-r-8" appearance="outline" style="font-size: 12px;">
+        <mat-label>{{ 'dak.title.employee' | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectid">
+          <mat-option>{{ 'dak.title.employee' | translate }}</mat-option>
+          <mat-option *ngFor="let marker of markerList" [value]="marker?.id">
+            {{ marker.firstName }} {{ marker.lastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div
+      fxFlex="20"
+      class="matero-col"
+      *ngIf="
+        this.currentNav[0].path == 'assigned' ||
+        this.currentNav[0].path == 'my-assignment' ||
+        (this.currentNav[0].path == 'hearings' && this.user?.roles![0] == 'ROLE_EMP') ||
+        (this.currentNav[0].path == 'cleared' && this.user?.roles![0] == 'ROLE_EMP')
+      "
+    >
+      <mat-form-field class="m-r-8"  appearance="outline"  style=" font-size: 12px">
+        <mat-label>{{ 'menu.inwardNumber' | translate }}</mat-label>
+        <input matInput [(ngModel)]="filteredInverd" />
+      </mat-form-field>
+    </div>
+    <div class="m-r-8" style="display: flex">
+      <div *ngIf="this.currentNav[0].path == 'dispatched'">
+        <mat-form-field class="m-r-8" style="font-size: 12px; width: 146px" appearance="outline">
+          <mat-label>{{'menu.inwardFrom' | translate}}</mat-label>
+          <input matInput [(ngModel)]="inwardNoFrom" />
+        </mat-form-field>
+      </div>
+      <div *ngIf="this.currentNav[0].path == 'dispatched'">
+        <mat-form-field class="m-r-8" appearance="outline" style="width: 146px; font-size: 12px">
+          <mat-label>{{'menu.inwardTo' | translate}}</mat-label>
+          <input matInput [(ngModel)]="inwardNoTo" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="20" class="matero-col" *ngIf="this.currentNav[0].path != 'dispatched'">
+      <mat-form-field class="m-r-8" appearance="outline" style="font-size: 12px;margin-left: -9px;">
+        <mat-label>{{ 'menu.daterange' | translate }}</mat-label>
+        <mat-date-range-input [max]="today" [rangePicker]="datePicker1" [formGroup]="range">
+          <input
+            name="letterGreaterDate"
+            formControlName="letterGreaterDate"
+            [(ngModel)]="range.letterGreaterDate"
+            matStartDate
+            placeholder="{{ 'menu.startdate' | translate }}"
+          />
+          <input
+            name="letterlesserDate"
+            formControlName="letterlesserDate"
+            matEndDate
+            [(ngModel)]="range.letterlesserDate"
+            placeholder="{{ 'menu.enddate' | translate }}"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="datePicker1"></mat-datepicker-toggle>
+        <mat-date-range-picker #datePicker1></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+    &nbsp;
+    <div fxFlex="40" class="matero-row" style="margin-top: 6px">
+      <button mat-raised-button color="primary" (click)="onSearch()" style="margin-left: 5px;margin-right: -5px;">
+        {{ 'menu.searchbtn' | translate }}
+      </button>
+      &nbsp;
+      <button mat-raised-button class="bg-red-500 text-white" (click)="onSearch(true)">
+        {{ 'menu.resetbtn' | translate }}
+      </button>
+    </div>
+    <div
+      class="downloadButton"
+      style="position: absolute; right: 10px; margin-top: 6px"
+      *ngIf="currentNav[0].path == 'dispatched' && user?.roles![0] == 'ROLE_MARKER'"
+    >
+      <button mat-raised-button color="primary" (click)="downloadReport()" class="m-t-6">
+        <mat-icon>cloud_download</mat-icon>
+      </button>
+
+      <button mat-raised-button color="primary" (click)="downloadReport(true)" class="m-l-8">
+        <mat-icon>print</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  &nbsp;&nbsp;
+  <div *ngIf="this.currentNav[0].path == 'my-assignment'" style="float: right; margin-bottom: 10px">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openDialog()"
+      *authorityHide="'DAK_MY_ASSIGNMENTS'"
+    >
+      {{ 'menu.selfletter' | translate }}
+    </button>
+  </div>
+  &nbsp;
+  <mtx-grid
+    [data]="list"
+    [columns]="columns"
+    [loading]="isLoading"
+    [pageOnFront]="false"
+    [toolbarTitle]="'Client List'"
+    [toolbarTemplate]="toolbarTpl"
+    [pageIndex]="pageContext.page"
+    (sortChange)="changeSort($event)"
+    [pageSize]="pageContext.itemsPerPage"
+    [length]="pageContext.totalItems"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [sortOnFront]="false"
+    [cellTemplate]="{ inwardNumber: nameTpl, id: indexTpl }"
+    (page)="onPageChange($event)"
+  >
+  </mtx-grid>
+  <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+    <a [routerLink]="'/home/letter/viewLetter/' + row.id">{{ row.inwardNumber }}</a>
+  </ng-template>
+  <ng-template #indexTpl let-row let-index="index" let-col="colDef">
+    {{ getMyIndex(index + 1) }}
+  </ng-template>
+  <ng-template #expansionTpl let-row> </ng-template>
+  <ng-template #toolbarTpl> </ng-template>
+  <ng-template #expansionTpl let-row> </ng-template>
+  <ng-template #toolbarTpl> </ng-template>
+</mat-card>

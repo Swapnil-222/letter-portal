@@ -1,0 +1,32 @@
+<mat-card-title
+  >{{"menu.hearingCompleted" | translate}} {{ incomingData?.inwardNumber }} </mat-card-title
+>
+<mat-divider></mat-divider>
+<form name="awaitForm" role="form" novalidate #awaitForm="ngForm" class="form-field-full">
+  <br />
+  <div  >
+    <div>
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.commenthere' | translate }}</mat-label>
+        <textarea
+          matInput
+          placeholder="{{ 'dak.title.commenthere' | translate }}"
+          name="remark"
+
+          required
+        ></textarea>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+      <mat-error *ngIf="awaitForm.controls.remark?.errors?.required">
+        {{ 'validations.required' | translate }}
+      </mat-error>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button class="bg-blue-500 text-white m-t-6" (click)="hearingCompleted()">{{"menu.hearingCompleted"|translate}}</button>
+      <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+        {{ 'menu.cancel' | translate }}
+      </button>
+    </div>
+  </div>
+</form>
+

@@ -1,0 +1,71 @@
+@use 'sass:color';
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme($theme) {
+  $is-dark-theme: map.get($theme, is-dark);
+  $primary: map.get($theme, primary);
+  $accent: map.get($theme, accent);
+  $background: map.get($theme, background);
+  $foreground: map.get($theme, foreground);
+
+  .matero-sidemenu {
+    > .matero-sidemenu-item {
+      > a {
+        border-radius: 10px;
+        color: rgb(34, 27, 27);
+
+        &:hover {
+          background: mat.get-color-from-palette($background, hover);
+        }
+      }
+
+      &.active {
+        > a {
+          background-color: #c0dbe2;
+          color:#1e55ad;
+            border-radius: 10px;
+          // background-color: if($is-dark-theme, rgba(mat.get-color-from-palette($primary), .15), transparent);
+
+          &:hover {
+            background-color: #c3e0e7;
+          }
+        }
+      }
+
+      &.open {
+        background: mat.get-color-from-palette($background, hover);
+      }
+    }
+
+    &.matero-sidemenu-sub {
+      > .matero-sidemenu-item {
+        &.active {
+          > a {
+            border-radius: 10px;
+            background-color: transparent;
+
+            &:hover {
+              margin-right: 16px;
+              background: mat.get-color-from-palette($background, hover);
+            }
+          }
+        }
+        &.active {
+          > a {
+            background-color: #536dfe30;
+            margin-right: 16px;
+            &:hover {
+              margin-right: 16px;
+              background: mat.get-color-from-palette($background, hover);
+            }
+          }
+        }
+
+        &.open {
+          background: transparent;
+        }
+      }
+    }
+  }
+}

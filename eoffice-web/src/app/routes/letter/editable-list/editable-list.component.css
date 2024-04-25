@@ -1,0 +1,56 @@
+table {
+  width: 100%;
+}
+
+.mat-table {
+  background-color: transparent !important;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.mat-paginator-range-label {
+  display: none;
+}
+
+.mat-form-field {
+  width: 60%;
+  font-size: 12px;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(255, 255, 255);
+}
+
+input.mat-input-element {
+  color: rgb(0, 0, 0);
+}
+
+.mat-header-cell {
+  color: black;
+  font-weight: revert;
+  white-space: nowrap;
+  background: #e4dada61;
+}
+
+.mat-cell,
+.mat-footer-cell {
+  font-size: 13px;
+}
+
+th.mat-header-cell,
+td.mat-cell,
+td.mat-footer-cell {
+  padding: 6px;
+  text-align: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+tr.mat-header-row {
+  height: 56px;
+}
+
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type {
+  padding-left: 6px;
+}

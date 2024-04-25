@@ -1,0 +1,100 @@
+<mat-card-title
+  >{{ 'menu.hearingdateForLetter' | translate }} {{ incomingData?.inwardNumber }}</mat-card-title
+>
+
+<mat-divider></mat-divider>
+<br />
+<form name="hearingForm" role="form" novalidate #organiztionForm="ngForm" class="form-field-full">
+  <div fxLayout="row wrap" fxLayoutGap="8px grid">
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-label>{{ 'menu.hearingDate' | translate }}</mat-label>
+      <mat-form-field>
+        <input
+          matInput
+          name="letterDate"
+          [matDatepicker]="datePicker"
+          [(ngModel)]="hearingDate"
+          #dateModel="ngModel"
+          required
+          aria-label="Letter Date"
+          [min]="today"
+          [readonly]="true"
+        />
+        <mat-datepicker-toggle matSuffix [for]="datePicker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #datePicker openOnFocus="true"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-label>{{ 'menu.Time' | translate }}</mat-label>
+      <mat-form-field class="example-full-width">
+        <input
+          mat-timepicker
+          matInput
+          type="time"
+          placeholder=""
+          name="time"
+          [(ngModel)]="Hearingdetails.time"
+        />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.accuserName' | translate }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ 'dak.title.accuserName' | translate }}"
+          name="firstName"
+          pattern="^[a-zA-Z\s]{2,50}$"
+          minlength="1"
+          maxlength="150"
+          [(ngModel)]="Hearingdetails.accuserName"
+          required
+        />
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" fxFlex.lt-md="100">
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.respondentName' | translate }}</mat-label>
+        <input
+          matInput
+          placeholder="{{ 'dak.title.respondentName' | translate }}"
+          name="address"
+          [(ngModel)]="Hearingdetails.respondentName"
+          required
+        />
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100">
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.comment' | translate }}</mat-label>
+        <textarea
+          matInput
+          placeholder="{{ 'dak.title.comment' | translate }}"
+          name="description"
+          [(ngModel)]="Hearingdetails.comment"
+        ></textarea>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button
+      [disabled]="organiztionForm.invalid"
+      mat-raised-button
+      color="primary"
+      class="m-t-6"
+      (click)="onSave()"
+    >
+      {{ (Hearingdetails.id != null ? 'menu.updateHearing' : 'menu.hearing') | translate }}
+    </button>
+    <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+      {{ 'menu.cancel' | translate }}
+    </button>
+  </div>
+</form>

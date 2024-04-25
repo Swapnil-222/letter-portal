@@ -1,0 +1,47 @@
+<mat-card-title
+  >{{ 'menu.clearedletter' | translate }} {{ incomingData?.inwardNumber }}
+</mat-card-title>
+<mat-divider></mat-divider>
+<form name="clearedForm" role="form" novalidate #clearedForm="ngForm" class="form-field-full">
+  <br />
+  <div>
+    <section>
+      <label>{{ 'menu.wanttoaddoutward' | translate }} </label>
+      <mat-radio-group name="temp" [(ngModel)]="temp">
+        <mat-radio-button value="true" (change)="getOutWardNo($event)" [checked]="isChecked">{{
+          'menu.yes' | translate
+        }}</mat-radio-button>
+        <mat-radio-button value="false" [checked]="!isChecked">{{
+          'menu.no' | translate
+        }}</mat-radio-button>
+      </mat-radio-group>
+      <br/>
+      <div *ngIf="temp == 'true'"  style="font-size: 13px;height: 34px;width: 219px;">
+          <mat-form-field appearance="outline">
+            <mat-label>{{'dak.title.outward' | translate}}</mat-label>
+            <input
+            matInput placeholder="" value="{{ this.outwardDetail.outWardNumber }}"
+            />
+          </mat-form-field>
+       </div>
+      <div *ngIf="temp == 'false'">
+      </div>
+    </section>
+    <br/><br />
+    <div>
+      <mat-label>{{ 'dak.title.comment' | translate }}</mat-label>
+      <mat-form-field>
+        <textarea matInput name="description" [(ngModel)]="details.comment"></textarea>
+        <mat-icon matSuffix></mat-icon>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button class="bg-purple-500 text-white m-t-6" (click)="onSave()">
+        {{ 'menu.cleared' | translate }}
+      </button>
+      <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+        {{ 'menu.cancel' | translate }}
+      </button>
+    </div>
+  </div>
+</form>

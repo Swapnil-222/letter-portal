@@ -1,0 +1,191 @@
+<mat-card>
+  <div fxLayout="row wrap" class="matero-row">
+    <div fxFlex="100" class="matero-col" [formGroup]="range" style="display: contents">
+      <div>
+        <mat-form-field class="m-r-8" appearance="outline" style=" font-size: 12px">
+          <mat-label>{{ 'menu.assignedDateFrom' | translate }}</mat-label>
+          <input
+            [max]="today"
+            matInput
+            name="letterGreaterDate"
+            [matDatepicker]="datePicker1"
+            formControlName="letterGreaterDate"
+            [(ngModel)]="range.letterGreaterDate"
+            aria-label="Assigned Date"
+          />
+          <mat-datepicker-toggle matSuffix [for]="datePicker1" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datePicker1 openOnFocus="true"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      &nbsp;
+      <div>
+        <mat-form-field class="m-r-8" appearance="outline" style=" font-size: 12px">
+          <mat-label>{{ 'menu.assignedDateTo' | translate }}</mat-label>
+          <input
+            [max]="today"
+            matInput
+            name="letterlesserDate"
+            [matDatepicker]="datePicker2"
+            formControlName="letterlesserDate"
+            [(ngModel)]="range.letterlesserDate"
+            aria-label="Assigned Date"
+          />
+          <mat-datepicker-toggle matSuffix [for]="datePicker2" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datePicker2 openOnFocus="true"></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    &nbsp;&nbsp;
+    <div class="matero-col" style="margin-top: 7px; flex: auto; margin-left: -18px">
+      <button mat-raised-button color="primary" (click)="onSearch(false)">
+        {{ 'menu.searchbtn' | translate }}
+      </button>
+      &nbsp;
+      <button mat-raised-button class="bg-red-500 text-white" (click)="onSearch(true)">
+        {{ 'menu.resetbtn' | translate }}
+      </button>
+      &nbsp;
+      <div fxLayout="row wrap" class="downloadButton" style="justify-content: flex-end">
+        <button mat-raised-button color="primary" (click)="downloadReport()" class="m-t-6">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        &nbsp;
+        <button mat-raised-button color="primary" (click)="downloadReport(true)" class="m-l-8">
+          <mat-icon>print</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h2 style="color: #047886">{{ user.organization?.organizationName }}</h2>
+  <h3>{{ 'headerr.subtitle' | translate }}</h3>
+  <h4>{{ 'menu.employeename' | translate }} : {{ user.firstName }} {{ user.lastName }}</h4>
+
+  <table mat-table [dataSource]="dataSource" class="">
+    <ng-container matColumnDef="srNo">
+      <th mat-header-cell *matHeaderCellDef>Sr No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.srNo }}</td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="inwardNumber">
+      <th style="background: #eee5e514" mat-header-cell *matHeaderCellDef><b>Inward Number</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.inwardNumber }}</td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="receviedDate">
+      <th mat-header-cell *matHeaderCellDef><b>Received Date</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.receviedDate }}</td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="outward">
+      <th mat-header-cell *matHeaderCellDef><b>Outward</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.outward }}</td>
+    </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="letterDate">
+      <th mat-header-cell *matHeaderCellDef><b>Letter Date</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.letterDate }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="sender">
+      <th mat-header-cell *matHeaderCellDef><b>Sender</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.sender }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="subject">
+      <th mat-header-cell *matHeaderCellDef><b>Subject</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.subject }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef><b>Status</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <!-- Cost Column -->
+    <ng-container matColumnDef="comment">
+      <th mat-header-cell *matHeaderCellDef><b>Comment</b></th>
+      <td mat-cell *matCellDef="let element">{{ element.comment }}</td>
+    </ng-container>
+
+    <!-- Header row first group -->
+    <ng-container matColumnDef="header-row-first-group">
+      <th mat-header-cell *matHeaderCellDef [style.text-align]="" colspan="2">
+        {{ 'menu.incomeregister' | translate }}
+      </th>
+    </ng-container>
+
+    <!-- Header row second group -->
+    <ng-container matColumnDef="header-row-second-group">
+      <th mat-header-cell *matHeaderCellDef width="40%">
+        <div *ngIf="range.letterGreaterDate != null || range.letterlesserDate != null">
+          {{ 'menu.dateTo' | translate }} : {{ range.letterGreaterDate | date: 'dd/MM/yyyy' }}
+          {{ 'menu.to' | translate }} {{ range.letterlesserDate | date: 'dd/MM/yyyy' }}
+        </div>
+      </th>
+    </ng-container>
+
+    <!-- Second row -->
+
+    <ng-container matColumnDef="header-second-row-first-group" class="header_1" style="width: 25px">
+      <th mat-header-cell *matHeaderCellDef [style.text-align]="" width="32%">
+        {{ 'menu.incomeInRegister' | translate }}
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-second-row-second-group" class="header_2">
+      <th mat-header-cell *matHeaderCellDef width="17%">
+        {{ 'menu.inwardReference' | translate }}
+      </th>
+    </ng-container>
+    <ng-container matColumnDef="header-second-row-third-group" class="header_2">
+      <th mat-header-cell *matHeaderCellDef></th>
+    </ng-container>
+
+    <!-- End second row -->
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['header-row-first-group', 'header-row-second-group']"
+    ></tr>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="[
+        'header-second-row-first-group',
+        'header-second-row-second-group',
+        'header-second-row-third-group'
+      ]"
+    ></tr>
+  </table>
+
+  <mtx-grid
+    [data]="list"
+    [columns]="columns"
+    [pageOnFront]="false"
+    [toolbarTitle]="''"
+    [toolbarTemplate]="toolbarTpl"
+    [pageIndex]="pageContext.page"
+    (sortChange)="changeSort($event)"
+    [pageSize]="pageContext.itemsPerPage"
+    [length]="pageContext.totalItems"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [sortOnFront]="false"
+    [cellTemplate]=""
+    (page)="onPageChange($event)"
+    [cellTemplate]="{ id: indexTpl }"
+  >
+  </mtx-grid>
+
+  <ng-template #indexTpl let-row let-index="index" let-col="colDef">
+    {{ getMyIndex(index + 1) }}
+  </ng-template>
+  <ng-template #expansionTpl let-row> </ng-template>
+  <ng-template #toolbarTpl></ng-template>
+</mat-card>

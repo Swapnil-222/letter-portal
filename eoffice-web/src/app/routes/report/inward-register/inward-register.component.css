@@ -1,0 +1,35 @@
+/* stylelint-disable order/properties-order */
+/* stylelint-disable selector-class-pattern */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  padding: 0 !important;
+  text-align: center;
+  border: 1px solid rgb(230, 230, 230);
+  border-collapse: collapse;
+}
+
+th.mat-header-cell {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+.downloadButton {
+  float: right;
+}
+
+.mat-header-cell {
+  color: black;
+  font-weight: revert;
+  white-space: nowrap;
+  background: #e4dada61;
+}

@@ -1,0 +1,117 @@
+<div class="matero-row" fxLayout="row wrap">
+  <!-- Statistics -->
+  <div
+    class="matero-col"
+    fxFlex.gt-sm="20"
+    fxFlex.gt-xs="50"
+    fxFlex="100"
+    *ngFor="let stat of stats"
+  >
+    <mat-card [ngClass]="['text-white', stat.color]" style="background :{{ stat.background }}">
+      <mat-card-title class="f-s-12 f-w-100">{{ stat.title }}</mat-card-title>
+      <mat-card-content style="font-size: large">
+        <h2>{{ stat.amount }}</h2>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- Graphs -->
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="100">
+    <mat-card style="background-color: rgb(219, 253, 213)">
+      <div>
+        <mat-card-subtitle
+        style="
+          background-color: rgb(219, 253, 213);
+          height: 40px;
+          padding-top: 12px;
+          padding-left: 10px;
+          border-top-left-radius: 7px;
+          border-top-right-radius: 7px;
+        "
+        ><strong class="heading">{{ 'dak.title.todaysHearing' | translate }}</strong>
+        <div style="float: right;">
+          <mat-icon style="margin-right: 15px;cursor: pointer" (click)="downloadReport()" color="primary" >cloud_download</mat-icon>
+          <mat-icon style="margin-right: 20px;cursor: pointer" (click)="downloadReport(true)" color="primary">print</mat-icon>
+        </div>
+
+      </mat-card-subtitle>
+      </div>
+
+      <div fxLayout="row wrap" class="downloadButton">
+
+      </div>
+
+      <mtx-grid
+        [data]="hearingList"
+        [columns]="columns"
+        [pageOnFront]="false"
+        [toolbarTitle]="'Client List'"
+        [toolbarTemplate]="toolbarTpl"
+        [pageIndex]="pageContext.page"
+        (sortChange)="changeSort($event)"
+        [pageSize]="pageContext.itemsPerPage"
+        [length]="pageContext.totalItems"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        [sortOnFront]="false"
+        [cellTemplate]="{ inwardNumber: nameTpl, id: indexTpl }"
+        (page)="onPageChange($event)"
+      >
+      </mtx-grid>
+
+      <ng-template #nameTpl let-row let-index="index" let-col="colDef">
+        <a [routerLink]="'/home/letter/viewLetter/' + row.id">{{ row.inwardNumber }}</a>
+      </ng-template>
+
+      <ng-template #toolbarTpl> </ng-template>
+      <ng-template #indexTpl let-row let-index="index" let-col="colDef">
+        {{ getMyIndex(index + 1) }}
+      </ng-template>
+      <ng-template #expansionTpl let-row> </ng-template>
+      <ng-template #toolbarTpl> </ng-template>
+
+    </mat-card>
+  </div>
+
+  <!-- Charts -->
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="100"></div>
+  <div class="matero-col" fxFlex="100" fxFlex.gt-sm="100">
+    <mat-card class="details" style="background-color: rgb(223, 245, 248)">
+      <mat-card-subtitle
+        style="
+          height: 40px;
+          padding-top: 12px;
+          padding-left: 10px;
+          border-top-left-radius: 7px;
+          border-top-right-radius: 7px;
+        "
+        ><strong class="strong-text-title">{{
+          'dak.title.empInwardStatus' | translate
+        }}</strong></mat-card-subtitle
+      >
+
+      <mtx-grid
+        [data]="empInwardList"
+        [columns]="columnsDisplayed"
+        [pageOnFront]="false"
+        [toolbarTitle]="'abc'"
+        [pageIndex]="pageContext1.page"
+        (sortChange)="changeSort1($event)"
+        [pageSize]="pageContext1.itemsPerPage"
+        [length]="pageContext1.totalItems"
+        [pageSizeOptions]="[5, 10, 20, 50]"
+        [sortOnFront]="false"
+        (page)="onPageChange1($event)"
+        [cellTemplate]="{ inwardNumber: nameTpll,id: indexTpll }"
+      >
+      </mtx-grid>
+      <ng-template #nameTpll let-row let-index="index" let-col="colDef"> </ng-template>
+      <ng-template #expansionTpll let-row> </ng-template>
+      <ng-template #indexTpll let-row let-index="index" let-col="colDef">
+        {{ getMyIndex1(index + 1) }}
+      </ng-template>
+      <ng-template #expansionTpll let-row> </ng-template>
+      <ng-template #toolbarTpll> </ng-template>
+
+
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,249 @@
+<mat-card>
+  <mat-card-title>{{ 'menu.adduser' | translate }}</mat-card-title>
+  <form name="userForm" role="form" novalidate #userForm="ngForm" class="form-field-full">
+    <div fxLayout="row wrap" fxLayoutGap="8px grid">
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.firstName' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="{{ 'menu.firstName' | translate }}"
+            name="firstName"
+            pattern="^[a-zA-Z\s]*$"
+            minlength="1"
+            maxlength="150"
+            [(ngModel)]="userDetails.firstName"
+            [disabled]="currentUrl[0].path == 'read'"
+          />
+          <mat-icon color="primary" matSuffix>person</mat-icon>
+          <mat-error *ngIf="userForm.controls.firstname?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.lastName' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="{{ 'menu.lastName' | translate }}"
+            [disabled]="currentUrl[0].path == 'read'"
+            name="lastName"
+            pattern="^[a-zA-Z\\s]*$"
+            [(ngModel)]="userDetails.lastName"
+          />
+          <mat-icon color="primary" matSuffix>person</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.contactno' | translate }}</mat-label>
+          <input
+            matInput
+            placeholder="{{ 'dak.title.contactno' | translate }}"
+            [disabled]="currentUrl[0].path == 'read'"
+            type="tel"
+            name="mobileNo"
+            pattern="\d{10}"
+            minlength="10"
+            maxlength="10"
+            [(ngModel)]="userDetails.mobileNo"
+            required
+          />
+          <mat-icon color="primary" matSuffix>smartphone</mat-icon>
+          <mat-error *ngIf="userForm.controls.mobileNo?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+          <mat-error *ngIf="userForm.controls.mobileNo?.errors?.['minlength']">
+            {{ 'validations.minlength' | translate }}
+          </mat-error>
+          <mat-error *ngIf="userForm.controls.mobileNo?.errors?.['maxlength']">
+            {{ 'validations.minlength' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.email' | translate }}</mat-label>
+          <input
+            matInput
+            [disabled]="currentUrl[0].path == 'read'"
+            placeholder="{{ 'dak.title.email' | translate }}"
+            name="email"
+            pattern="(?![_.-])((?![_.-][_.-])[a-z\d_.-]){0,63}[a-z\d]@(?!-)((?!--)[a-z\d-]){0,63}[a-z\d]\.(((?!-)((?!--)[a-z\d-]){0,63}[a-z\d]\.)|)(([a-z]{2,14}\.)|)[a-z]{2,14}"
+            [(ngModel)]="userDetails.email"
+            required
+          />
+          <mat-icon color="primary" matSuffix>email</mat-icon>
+          <mat-error *ngIf="userForm.controls.email?.errors?.required">
+            {{ 'validations.invalid_email' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.address' | translate }}</mat-label>
+          <input
+            matInput
+            [disabled]="currentUrl[0].path == 'read'"
+            placeholder="{{ 'menu.address' | translate }}"
+            name="address"
+            [(ngModel)]="userDetails.address"
+          />
+          <mat-icon color="primary" matSuffix>person_pin_circle</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.selectdesignation' | translate }}</mat-label>
+          <mat-select
+            [disabled]="currentUrl[0].path == 'read'"
+            name="designation"
+            [(ngModel)]="userDetails.designation"
+          >
+            <mat-option>{{ 'menu.selectdesignation' | translate }}</mat-option>
+            <mat-option
+              *ngFor="let designation of parameterDesList"
+              [value]="designation.parameterName"
+              >{{ designation.parameterName }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'table_kitchen_sink.gender' | translate }}</mat-label>
+          <mat-select
+            [disabled]="currentUrl[0].path == 'read'"
+            name="gender"
+            [(ngModel)]="userDetails.gender"
+            required
+          >
+            <mat-option>{{ 'table_kitchen_sink.selectgender' | translate }}</mat-option>
+            <mat-option value="FEMALE">Female</mat-option>
+            <mat-option value="MALE">Male</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.selectrole' | translate }}</mat-label>
+          <mat-select
+            [disabled]="currentUrl[0].path == 'read'"
+            name="selectedRole"
+            [(ngModel)]="selectedRole"
+            required
+          >
+            <mat-option value="" disabled selected>{{ 'menu.selectrole' | translate }}</mat-option>
+            <mat-option *ngFor="let securityRoles of securityRoleList" [value]="securityRoles.id">{{
+              securityRoles.roleName
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-md="100" *authorityHide="'ROLE_ADMIN'">
+        <mat-form-field>
+          <mat-label>{{ 'org.title.organization' | translate }}</mat-label>
+          <mat-select
+            [disabled]="currentUrl[0].path == 'read'"
+            name="selectedOrganization"
+            [(ngModel)]="selectedOrganization"
+            required
+          >
+            <mat-option value="" disabled selected>{{
+              'org.title.organization' | translate
+            }}</mat-option>
+            <mat-option *ngFor="let organization of organizationList" [value]="organization.id">{{
+              organization.organizationName
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.username' | translate }}</mat-label>
+          <input
+            matInput
+            type="text"
+            [disabled]="currentUrl[0].path == 'read'"
+            placeholder="{{ 'menu.username' | translate }}"
+            name="username"
+            [(ngModel)]="userDetails.username"
+            (change)="changeLowerCase($event)"
+            required
+          />
+          <mat-icon color="primary" matSuffix>person</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.password' | translate }}</mat-label>
+          <input
+            matInput
+            type="password"
+            [disabled]="currentUrl[0].path == 'read'"
+            placeholder="{{ 'menu.password' | translate }}"
+            name="password"
+            #password="ngModel"
+            [(ngModel)]="userDetails.passwordHash"
+            [minlength]="4"
+            required
+          />
+          <mat-icon color="primary" matSuffix>lock_open</mat-icon>
+          <mat-error *ngIf="userForm.controls.password?.errors?.required">
+            {{ 'login.please_enterpass' | translate }}
+          </mat-error>
+          <mat-error *ngIf="userForm.controls.password?.errors?.minlength">{{
+            'login.minlength' | translate
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" fxFlex.lt-md="100">
+        <mat-form-field>
+          <mat-label>{{ 'menu.cnfpassword' | translate }}</mat-label>
+          <input
+            matInput
+            type="password"
+            [disabled]="currentUrl[0].path == 'read'"
+            placeholder="{{ 'menu.cnfpassword' | translate }}"
+            name="confirmpassword"
+            #confirmpassword="ngModel"
+            pattern="{{ password.value }}"
+            [(ngModel)]="userDetails.confirmPassword"
+            required
+          />
+          <mat-icon color="primary" matSuffix>lock</mat-icon>
+          <mat-error *ngIf="userDetails.passwordHash != userDetails.confirmPassword">
+            {{ 'login.confirmpassword' | translate }}
+          </mat-error>
+          <mat-error *ngIf="userForm.controls.password?.errors?.required">
+            {{ 'login.please_enterpass' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button
+        [disabled]="currentUrl[0].path == 'read' || userForm.form.invalid"
+        mat-raised-button
+        color="primary"
+        class="m-t-6"
+        (click)="save()"
+      >
+        {{ (userDetails.id != null ? 'menu.update' : 'menu.save') | translate }}
+      </button>
+      <button mat-raised-button color="warn" class="m-l-8" (click)="onCancel()">
+        {{ 'menu.cancel' | translate }}
+      </button>
+    </div>
+  </form>
+</mat-card>

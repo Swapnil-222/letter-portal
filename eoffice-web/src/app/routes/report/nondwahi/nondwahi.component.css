@@ -1,0 +1,50 @@
+/* stylelint-disable order/properties-order */
+/* stylelint-disable rule-empty-line-before */
+/* stylelint-disable selector-class-pattern */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  padding: 0 !important;
+  text-align: center;
+  border: 1px solid rgb(230, 230, 230);
+  border-collapse: collapse;
+
+  /* stylelint-disable-next-line block-closing-brace-empty-line-before */
+}
+
+th.mat-header-cell {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+
+  /* stylelint-disable-next-line block-closing-brace-empty-line-before */
+}
+
+h2,
+h3 {
+  text-align: center;
+}
+
+.downloadButton {
+  float: right;
+}
+.mat-sort-header-content {
+  display: flex;
+  align-items: center;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+}
+.mat-header-cell {
+  color: black;
+  font-weight: revert;
+  white-space: nowrap;
+  background: #e4dada61;
+}
+mtx-grid.mtx-grid {
+  font-weight: revert;
+}

@@ -1,0 +1,10 @@
+/** Custom table style not with theme */
+
+mtx-grid.mtx-grid {
+  .mat-header-cell {
+    white-space: nowrap;
+    font-weight: bold;
+    color: black;
+    background: #e4dada61;
+  }
+}

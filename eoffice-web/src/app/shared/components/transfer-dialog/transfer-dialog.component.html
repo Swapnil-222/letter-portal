@@ -1,0 +1,57 @@
+<mat-card-title
+  >{{ 'menu.assignletter' | translate }} {{ incomingData?.inwardNumber }}</mat-card-title
+>
+<mat-divider></mat-divider>
+<br/>
+<form name="userForm" role="form" novalidate #userForm="ngForm" class="form-field-full">
+  <div>
+    <div>
+      <div>
+        <mat-form-field>
+          <mat-label>{{ 'menu.assignTo' | translate }}</mat-label>
+          <mat-select
+            name="dakAssignee"
+            [(ngModel)]="transferDetails.dakAssignee"
+            (ngModelChange)="selectedMarkerId($event)"
+          >
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let marker of markerList" [value]="marker.id">
+              {{ marker.firstName }} {{ marker.lastName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <mat-label>{{ 'dak.title.commenthere' | translate }}</mat-label>
+          <textarea
+            name="comment"
+            matInput
+            placeholder="{{ 'dak.title.commenthere' | translate }}"
+            [(ngModel)]="transferDetails.comment"
+          ></textarea>
+          <mat-error *ngIf="userForm.controls.letterType?.errors?.required">
+            {{ 'validations.required' | translate }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <button
+          mat-raised-button
+          [mat-dialog-close]="true"
+          cdkFocusInitial
+          class="bg-teal-500 text-white m-t-6"
+          [disabled]="userForm.invalid"
+          (click)="onSave()"
+        >
+          {{ 'menu.assign' | translate }}
+        </button>
+        <button mat-raised-button class="bg-red-500 text-white m-l-8" mat-dialog-close>
+          {{ 'menu.cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

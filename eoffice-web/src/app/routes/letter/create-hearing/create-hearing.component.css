@@ -1,0 +1,15 @@
+.mat-list-base {
+  display: block;
+  margin-top: 8px;
+  margin-left: 9px;
+  padding-top: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.date {
+  flex: 1 1 50%;
+  box-sizing: border-box;
+  max-width: 50%;
+  margin: 0 -8px -8px 8px;
+  padding: 0 20px 8px 0;
+}

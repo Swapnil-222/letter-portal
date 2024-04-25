@@ -1,0 +1,28 @@
+<mat-card-title
+  >{{ 'menu.awateDateLetter' | translate }} {{ incomingData?.inwardNumber }}
+</mat-card-title>
+<mat-divider></mat-divider>
+<form name="awaitForm" role="form" novalidate #awaitForm="ngForm" class="form-field-full">
+  <br />
+  <div>
+    <div>
+      <mat-form-field>
+        <mat-label>{{ 'dak.title.commenthere' | translate }}</mat-label>
+        <textarea
+          matInput
+          placeholder="{{ 'dak.title.commenthere' | translate }}"
+          name="remark"
+          [(ngModel)]="details.awaitReason"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-raised-button class="bg-orange-500 text-white m-t-6" (click)="onSave()">
+        {{ 'menu.markawait' | translate }}
+      </button>
+      <button mat-raised-button color="warn" class="m-l-8" mat-dialog-close>
+        {{ 'menu.cancel' | translate }}
+      </button>
+    </div>
+  </div>
+</form>

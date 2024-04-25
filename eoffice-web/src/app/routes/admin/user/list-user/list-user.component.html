@@ -1,0 +1,88 @@
+<mat-card>
+  <div fxLayout="row wrap" class="matero-row">
+    <div fxFlex="100" class="matero-col">
+      <mat-form-field class="m-r-8" appearance="outline" style="font-size: 13px">
+        <mat-label>{{ 'menu.firstName' | translate }}</mat-label>
+        <input matInput [(ngModel)]="search['firstName.contains']" />
+      </mat-form-field>
+
+      <mat-form-field class="m-r-8" appearance="outline" style="font-size: 13px">
+        <mat-label>{{ 'menu.lastName' | translate }}</mat-label>
+        <input matInput [(ngModel)]="search['lastName.contains']" />
+      </mat-form-field>
+
+      <mat-form-field
+        class="m-r-8"
+        *ngIf="user.roles![0] != 'ROLE_SUPER_ADMIN' && user.organization != 'null'"
+        appearance="outline"
+        style="font-size: 13px"
+      >
+        <mat-label>{{ 'menu.designation' | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectedRole">
+          <mat-option>{{ 'menu.designation' | translate }}</mat-option>
+          <mat-option *ngFor="let parameter of parameterDesList" [value]="parameter.parameterName">
+            {{ parameter.parameterName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;
+      <div
+        fxFlex="40"
+        class="matero-row"
+        style="
+          margin-top: 9px;
+          flex: 1 1 100%;
+          box-sizing: border-box;
+          max-width: 40%;
+          margin-left: 2px;
+        "
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          style="margin-left: 4px"
+          (click)="onSearch(false)"
+        >
+          {{ 'menu.searchbtn' | translate }}
+        </button>
+        &nbsp;
+        <button mat-raised-button class="bg-red-500 text-white" (click)="onSearch(true)">
+          {{ 'menu.resetbtn' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<mat-card>
+  <div>
+    <button mat-raised-button color="primary" (click)="onAdd()">
+      {{ 'menu.addNewUser' | translate }}
+    </button>
+  </div>
+  &nbsp;
+  <mtx-grid
+    [data]="list"
+    [columns]="columns"
+    [loading]="isLoading"
+    [pageOnFront]="false"
+    [showToolbar]="false"
+    [toolbarTitle]="'Client List'"
+    [toolbarTemplate]="toolbarTpl"
+    [pageIndex]="pageContext.page"
+    (sortChange)="changeSort($event)"
+    [pageSize]="pageContext.itemsPerPage"
+    [length]="pageContext.totalItems"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [sortOnFront]="false"
+    [cellTemplate]="{ inwardNumber: nameTpl, id: indexTpl }"
+    (page)="onPageChange($event)"
+  >
+  </mtx-grid>
+  <ng-template #nameTpl let-row let-index="index" let-col="colDef"> </ng-template>
+  <ng-template #expansionTpl let-row> </ng-template>
+  <ng-template #indexTpl let-row let-index="index" let-col="colDef">
+    {{ getMyIndex(index + 1) }}
+  </ng-template>
+  <ng-template #expansionTpl let-row> </ng-template>
+  <ng-template #toolbarTpl> </ng-template>
+</mat-card>
